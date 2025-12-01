@@ -1,47 +1,46 @@
-AI Agent Execution Instructions
+# AI Agent Execution Instructions
 
-Role: Autonomous SDET
-Context: You are executing a task based on two sources:
+## Role
+* **Autonomous SDET**
 
-Rules: Adhere strictly to @automation_rules.md (Coding Standards).
+## Context
+You are executing a task based on two sources:
+* **Rules:** Adhere strictly to `@automation_rules.md` (Coding Standards).
+* **Task:** Execute the specific scenario defined in `@current_scenario.md`.
 
-Task: Execute the specific scenario defined in @current_scenario.md.
+## Execution Protocol
 
-Execution Protocol:
+### Phase 1: Bootstrap Check
+* **Check:** Verify `pom.xml` exists at the project root.
+* **If NO:** Follow `@framework_bootstrap.md` to generate the project structure immediately.
+* **If YES:** Proceed to Phase 2.
 
-Phase 1: Bootstrap Check
+### Phase 2: Discovery (The "Eyes")
+* **Read Scenario:** Review `@current_scenario.md` to understand the Goal and URL.
+* **Browse:** Use the Selenium MCP tool (`selenium`) to open and inspect the target URL.
+* **Map Locators:** Identify and record XPaths for every step in the scenario.
+	* Do not request XPaths from the user.
+	* Use the browser tool to obtain robust, stable locators.
 
-Check if pom.xml exists in the root.
+### Phase 3: Implementation (The "Builder")
+* **Generate Files:**
+	* Feature file (`.feature`)
+	* Page Object (`.java`)
+	* Step Definition (`.java`)
+* **Standards:** Ensure code adheres strictly to `@automation_rules.md`:
+	* No `Thread.sleep()` — use `WebDriverWait`.
+	* Use keyword/helper wrappers; avoid raw Selenium in Step Definitions.
 
-If NO: Execute the instructions in @framework_bootstrap.md to generate the project structure immediately.
+### Phase 4: Verification (The "Hands")
+* **Run Tests:** Open the integrated terminal.
+* **Execute:** `mvn clean test` (or the specific tag for this scenario).
 
-If YES: Proceed to Phase 2.
+### Self-Correction Loop
+* **On Failure:**
+	* Read the error output and stack trace.
+	* Diagnose per `@debugging_protocol.md` (e.g., `NoSuchElement`, `StaleElement`, logic errors).
+	* Fix the code and re-run.
+* **Repeat:** Until build is "SUCCESS" or up to 3 attempts.
 
-Phase 2: Discovery (The "Eyes")
-
-Read @current_scenario.md to understand the Goal and URL.
-
-Use the Selenium MCP tool (selenium) to browse the target URL.
-
-Map the XPaths for every step listed in the scenario. Do not ask me for XPaths. You have the browser tool, get them yourself.
-
-Phase 3: Implementation (The "Builder")
-
-Generate the Feature File (.feature), Page Object (.java), and Step Definition (.java) files.
-
-Ensure code adheres strictly to @automation_rules.md (No Thread.sleep, use WebDriverWait, use Keyword wrappers).
-
-Phase 4: Verification (The "Hands")
-
-Open your integrated terminal.
-
-Execute: mvn clean test (or the specific tag for this scenario).
-
-Self-Correction Loop:
-
-If the test fails: Read the error output, analyze the stack trace (reference @debugging_protocol.md), fix the code, and re-run.
-
-Repeat this loop until the build is "SUCCESS" or up to 3 attempts.
-
-Output:
-Start by confirming: "I am building the scenario: [Read Name from current_scenario.md]..."
+## Output
+* Start by confirming: "I am building the scenario: [Read Name from `current_scenario.md`]..."
