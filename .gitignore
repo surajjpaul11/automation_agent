@@ -1,0 +1,85 @@
+# Maven
+target/
+.mvn/
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+bin/
+.metadata
+
+# IDE - VS Code / Cursor
+.vscode/
+*.code-workspace
+
+# IDE - NetBeans
+nbproject/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.cache/
+
+# Selenium / WebDriver drivers
+drivers/
+geckodriver
+chromedriver
+msedgedriver
+
+# Test reports and screenshots
+screenshots/
+test-output/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+
+# Log files
+*.log
+*.log.*
+
+# Compiled class files (backup - target/ should cover most)
+*.class
+
+# Java package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Application specific temporary files
+fix_log.md
+compliance_report.md
+
+# Java crash logs
+hs_err_pid*
+
