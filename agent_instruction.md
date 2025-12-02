@@ -10,10 +10,15 @@ You are executing a task based on two sources:
 
 ## Execution Protocol
 
-### Phase 1: Bootstrap Check
-* **Check:** Verify `pom.xml` exists at the project root.
-* **If NO:** Follow `@framework_bootstrap.md` to generate the project structure immediately.
-* **If YES:** Proceed to Phase 2.
+### Phase 1: Context & Bootstrap (The "Brain")
+
+* **Condition A:** Check if `framework_details.md` exists.
+    * **IF YES:** Read this file immediately. Load the directory paths and coding standards into your context. Proceed to Phase 2.
+    * **IF NO:** Proceed to Condition B.
+
+* **Condition B:** Check if `pom.xml` exists in the root.
+    * **IF YES (Existing Project):** Execute the instructions in `@analyze_framework.md` to generate the `framework_details.md` file. Once created, read it and proceed to Phase 2.
+    * **IF NO (New Project):** Execute the instructions in `@framework_bootstrap.md` to generate the project structure from scratch. After bootstrap, read the generated `framework_details.md` (if created) and proceed to Phase 2.
 
 ### Phase 2: Discovery (The "Eyes")
 * **Read Scenario:** Review `@current_scenario.md` to understand the Goal and URL.
