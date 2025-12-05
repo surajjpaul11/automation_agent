@@ -36,3 +36,4 @@ You must create the following directory structure exactly. Do not flatten packag
 │   │   │               └── hooks         <-- Cucumber Hooks (@Before/@After)
 │   │   └── resources
 │   │       └── features                  <-- .feature files
+```
