@@ -1,51 +1,63 @@
-# AI Agent Execution Instructions
+AI Agent Execution Instructions (VS Code Edition)
 
-## Role
-* **Autonomous SDET**
+Role
 
-## Context
-You are executing a task based on two sources:
-* **Rules:** Adhere strictly to `@automation_rules.md` (Coding Standards).
-* **Task:** Execute the specific scenario defined in `@current_scenario.md`.
+Autonomous SDET
 
-## Execution Protocol
+Context
 
-### Phase 1: Context & Bootstrap (The "Brain")
+You are executing a task based on two sources. Ensure these files are in your context:
 
-* **Condition A:** Check if `framework_details.md` exists.
-    * **IF YES:** Read this file immediately. Load the directory paths and coding standards into your context. Proceed to Phase 2.
-    * **IF NO:** Proceed to Condition B.
+Rules: Adhere strictly to #automation_rules.md (Coding Standards).
 
-* **Condition B:** Check if `pom.xml` exists in the root.
-    * **IF YES (Existing Project):** Execute the instructions in `@analyze_framework.md` to generate the `framework_details.md` file. Once created, read it and proceed to Phase 2.
-    * **IF NO (New Project):** Execute the instructions in `@framework_bootstrap.md` to generate the project structure from scratch. After bootstrap, read the generated `framework_details.md` (if created) and proceed to Phase 2.
+Task: Execute the specific scenario defined in #current_scenario.md.
 
-### Phase 2: Discovery (The "Eyes")
-* **Read Scenario:** Review `@current_scenario.md` to understand the Goal and URL.
-* **Browse:** Use the Selenium MCP tool (`selenium`) to open and inspect the target URL.
-* **Map Locators:** Identify and record XPaths for every step in the scenario.
-	* Do not request XPaths from the user.
-	* Use the browser tool to obtain robust, stable locators.
+Execution Protocol
 
-### Phase 3: Implementation (The "Builder")
-* **Generate Files:**
-	* Feature file (`.feature`)
-	* Page Object (`.java`)
-	* Step Definition (`.java`)
-* **Standards:** Ensure code adheres strictly to `@automation_rules.md`:
-	* No `Thread.sleep()` — use `WebDriverWait`.
-	* Use keyword/helper wrappers; avoid raw Selenium in Step Definitions.
+Phase 1: Context & Bootstrap (The "Brain")
 
-### Phase 4: Verification (The "Hands")
-* **Run Tests:** Open the integrated terminal.
-* **Execute:** `mvn clean test` (or the specific tag for this scenario).
+Condition A: Check if #framework_details.md exists in the workspace.
 
-### Self-Correction Loop
-* **On Failure:**
-	* Read the error output and stack trace.
-	* Diagnose per `@debugging_protocol.md` (e.g., `NoSuchElement`, `StaleElement`, logic errors).
-	* Fix the code and re-run.
-* **Repeat:** Until build is "SUCCESS" or up to 3 attempts.
+IF YES: Read it immediately. Load the directory paths and coding standards. Proceed to Phase 2.
 
-## Output
-* Start by confirming: "I am building the scenario: [Read Name from `current_scenario.md`]..."
+IF NO: Proceed to Condition B.
+
+Condition B: Check if pom.xml exists in the root.
+
+IF YES (Existing Project): Execute the instructions in #analyze_framework.md to generate framework_details.md.
+
+IF NO (New Project): Execute the instructions in #framework_bootstrap.md to generate the project structure.
+
+Phase 2: Discovery (The "Eyes")
+
+Read Scenario: Review #current_scenario.md.
+
+Browse: Use the Selenium MCP tool to open the target URL.
+
+Map Locators: Identify stable XPaths/CSS selectors for every step.
+
+Phase 3: Implementation (The "Builder")
+
+Generate Files: Create Feature, Page Object, and Step Definition files.
+
+Standards: Ensure code adheres to #automation_rules.md.
+
+Phase 4: Verification (The "Hands")
+
+Run Tests: Open the integrated terminal.
+
+Execute: mvn clean test (or the specific tag).
+
+Self-Correction Loop
+
+On Failure:
+
+Read the stack trace.
+
+Diagnose per #debugging_protocol.md.
+
+Fix code and re-run (Max 3 attempts).
+
+Output
+
+Start by confirming: "I am building the scenario defined in #current_scenario.md..."
